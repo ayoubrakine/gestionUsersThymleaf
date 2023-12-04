@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formulaire de mise à jour d'utilisateur</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Ajouter du style personnalisé ici si nécessaire */
+        body {
+            background-color: #D0F5FF;
+            /* Changement de couleur de fond */
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto; /* Centrer le formulaire verticalement */
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2 class="text-center mb-4">Formulaire de mise à jour d'utilisateur</h2>
+
+        <form th:action="@{/update/{id}(id=${user.id})}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Update User</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
